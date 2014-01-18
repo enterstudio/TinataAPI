@@ -1,0 +1,70 @@
+FORMAT: 1A
+
+# Tinata API
+Tinata is a travel advisory service aggregating data from various sources such as the UK FCO, the NHS and others.
+
+# Tinata API Root [/]
+Tinata API entry point.
+
+This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and HAL links.
+
+## Retrieve Entry Point [GET]
+
++ Response 200 (application/hal+json)
+    + Headers
+
+            Link: <http:/api.tinata.org/>;rel="self",<http:/api.tinata.org/countries>;rel="countries"
+
+    + Body
+
+            {
+                "_links": {
+                    "self": { "href": "/" },
+                    "countries": { "href": "/countries", "templated": true }
+                }
+            }
+
+# Group Country
+Tinata data is grouped by countries.
+
+## Country [/countries/{id}]
+A single country with the following attributes:
+
+- *_id*: Two letter ISO 3166-1 country code
+- *iso*: Three letter ISO 3166-1 country code
+- *officialName*: Official country name
+- *citizenName*: Name for a citizen of that country
+- *adjectivalName*: How to refer to the country as an adjective
+- *FCOTravelAdvice*: Link to the country on the FCO travel advice site
+- *NHSTravelHealth*: Link to the country on the NHS Fit for Travel site
+
++ Parameters
+    + id (string) ... Two letter ISO 3166-1 country code.
+
++ Model (application/hal+json)
+
+    HAL+JSON representation of Country Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
+
+    + Headers
+
+            Link: <http:/api.tinata.org/countries/AF>;rel="self"
+
+    + Body
+
+            {
+                "_links": {
+                    "self": { "href": "/countries/AF" },
+                },
+                "_id": "AF",
+                "iso": "AFG",
+                "officialName": "The Islamic Republic of Afghanistan",
+                "citizenName": "Afghan",
+                "adjectivalName": "Afghan",
+                "FCOTravelAdvice": "https://www.gov.uk/foreign-travel-advice/afghanistan",
+                "NHSTravelHealth": "http://www.fitfortravel.nhs.uk/destinations/asia-(central)/afghanistan.aspx"
+            }
+
+### Retrieve a Single Country [GET]
++ Response 200
+
+    [Country][]
