@@ -68,3 +68,47 @@ A single country with the following attributes:
 + Response 200
 
     [Country][]
+
+## Countries Collection [/countries]
+Collection of all Countries.
+
+The Countries Collection resource has the following attribute:
+
+- total
+
+In addition it **embeds** *Country Resources* in the Tinata API.
+
+
++ Model (application/hal+json)
+
+    HAL+JSON representation of Countries Collection Resource. The Country resources in collections are embedded. Note the embedded Countries resource are incomplete representations of the Country in question. Use the respective Country link to retrieve its full representation.
+
+    + Headers
+
+            Link: <http:/api.tinata.org/countries>;rel="self"
+
+    + Body
+
+            {
+                "_links": {
+                    "self": { "href": "/countries" }
+                },
+                "_embedded": {
+                    "countries": [
+                        {
+                            "_links" : {
+                                "self": { "href": "/countries/AF" }
+                            },
+                            "_id": "AF",
+                            "iso": "AFG",
+                            "officialName": "The Islamic Republic of Afghanistan"
+                        }
+                    ]
+                },
+                "total": 1
+            }
+
+### List All Countries [GET]
++ Response 200
+
+    [Countries Collection][]
