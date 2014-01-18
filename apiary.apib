@@ -69,7 +69,7 @@ A single country with the following attributes:
 
     [Country][]
 
-## Countries Collection [/countries]
+## Countries Collection [/countries{?search}]
 Collection of all Countries.
 
 The Countries Collection resource has the following attribute:
@@ -109,6 +109,9 @@ In addition it **embeds** *Country Resources* in the Tinata API.
             }
 
 ### List All Countries [GET]
++ Parameters
+    + search (optional, string) ... Full text search string. Only matching countries are returned.
+
 + Response 200
 
     [Countries Collection][]
